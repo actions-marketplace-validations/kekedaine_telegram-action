@@ -1,6 +1,6 @@
 {
   "name": "lz-simple-telegram-notify",
-  "version": "4.0.0",
+  "version": "5.0.1",
   "description": "Notify via Telegram!",
   "keywords": [
     "action",
@@ -23,7 +23,7 @@
     "@types/node": "^15.3.0",
     "@types/sanitize-html": "^2.3.0",
     "@types/showdown": "^1.9.3",
-    "typescript": "^4.1.3"
+    "typescript": "^4.5.2"
   },
   "scripts": {
     "start": "tsc && node ./dist/main.js",
