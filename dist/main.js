@@ -37,8 +37,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(require("@actions/core"));
 const axios_1 = __importDefault(require("axios"));
-const Utils_1 = __importDefault(require("./Support/Utils"));
-const NoCommitsError_1 = __importDefault(require("./Exceptions/NoCommitsError"));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -48,10 +46,10 @@ function run() {
             const telegram_token = process.env.TELEGRAM_TOKEN;
             const telegram_chat = process.env.TELE_CHAT_ID || process.env.TELEGRAM_CHAT;
             //check envs
-            if (Utils_1.default.empty(telegram_token)) {
+            if (!telegram_token) {
                 throw new Error("telegram_token argument not compiled");
             }
-            if (Utils_1.default.empty(telegram_chat)) {
+            if (!telegram_chat) {
                 throw new Error("telegram_chat argument not compiled");
             }
             //send message via telegram
@@ -63,13 +61,8 @@ function run() {
             });
         }
         catch (error) {
-            if (error instanceof NoCommitsError_1.default) {
-                core.warning("No commits found.");
-            }
-            else {
-                Utils_1.default.dump(error);
-                core.setFailed(error.message);
-            }
+            console.log(error.message);
+            core.setFailed(error.message);
         }
     });
 }

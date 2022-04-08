@@ -1,7 +1,5 @@
 import * as core from "@actions/core";
 import axios from "axios";
-import Utils from "./Support/Utils";
-import NoCommitsError from "./Exceptions/NoCommitsError";
 
 async function run(): Promise<void> {
     try {
@@ -13,11 +11,11 @@ async function run(): Promise<void> {
         const telegram_chat = process.env.TELE_CHAT_ID || process.env.TELEGRAM_CHAT;
 
         //check envs
-        if (Utils.empty(telegram_token)) {
+        if (!telegram_token) {
             throw new Error("telegram_token argument not compiled");
         }
 
-        if (Utils.empty(telegram_chat)) {
+        if (!telegram_chat) {
             throw new Error("telegram_chat argument not compiled");
         }
 
@@ -29,12 +27,8 @@ async function run(): Promise<void> {
             disable_web_page_preview: true,
         });
     } catch (error: any) {
-        if (error instanceof NoCommitsError) {
-            core.warning("No commits found.");
-        } else {
-            Utils.dump(error);
-            core.setFailed(error.message);
-        }
+        console.log(error.message);
+        core.setFailed(error.message);
     }
 }
 
