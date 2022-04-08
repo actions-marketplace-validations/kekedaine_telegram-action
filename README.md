@@ -21,7 +21,7 @@ jobs:
         uses: kekedaine/telegram-action@v2
         env:
           TELEGRAM_TOKEN: ${{ secrets.telegram_token }}
-          TELEGRAM_CHAT: ${{ secrets.telegram_chat }}
+          TELEGRAM_CHAT: ${{ secrets.telegram_chat }} # || TELE_CHAT_ID
         with:
           text: "helloworld"
           parse_mode: "html"
@@ -31,7 +31,7 @@ jobs:
 ## 💼 Environment variables
 
 - **TELEGRAM_TOKEN** `string` - Telegram authorization token
-- **TELEGRAM_CHAT** `string` - Unique identifier chat
+- **TELE_CHAT_ID || TELEGRAM_CHAT** `string` - Unique identifier chat
 
 >How to get a telegram token: [BotFather](https://core.telegram.org/bots#6-botfather)
 >
@@ -40,43 +40,9 @@ jobs:
 >1. Forward a message from the target chat to [@JsonDumpBot](https://telegram.me/JsonDumpBot)
 >2. Copy the *message* ➡ *forward_from_chat* ➡ **id**
 
-
-## 📝 Inputs variables
-
-|Input           |Optional?|Expected value   |Description                                 |
-|----------------|---------|-----------------|--------------------------------------------|
-|commit_template |Yes      |File path        |Override the default commit template message|
-|release_template|Yes      |File path        |Override the default commit template message|
-|status          |Yes      |`${{job.status}}`|Job status                                  |
-
-
-## 🎭 Default Templates
-
-```mustache
-// ./templates/commit.mustache
-
-{{#commits}}
-<a href="{{{repo_url}}}">{{repo_name}}</a> • <a href="https://github.com/{{actor}}">{{actor}}</a> • <a href="{{commit_url}}">{{commit_sha}}</a>
-{{commit_message}}
-
-{{/commits}}
-
-{{status}}
-```
-
-```mustache
-// ./templates/release.mustache
-
-<a href="{{{tag_url}}}">New {{repo_name}} release</a>: <code>{{tag_name}}</code> ({{tag_type}})
-{{{body}}}
-```
-
 ## ✨ Workflow examples
 
 Check this workflow: [test.yml](.github/workflows/test.yml)
-
-## 📃 Changelog
-Please see the [CHANGELOG.md](CHANGELOG.md) for more information on what has changed recently.
 
 ## 📖 License
 Please see the [LICENSE.md](LICENSE) file for more information.
