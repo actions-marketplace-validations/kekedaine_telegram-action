@@ -11,9 +11,13 @@ inputs:
   status:
     required: false
     description: 'Job status'
-  text:
+  message:
     required: false
     description: 'message'
+  parse_mode:
+    required: false
+    description: 'parse_mode'
+
 runs:
   using: 'node12'
   main: 'dist/main.js'
