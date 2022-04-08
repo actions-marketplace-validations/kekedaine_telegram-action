@@ -2175,7 +2175,11 @@ exports.getIDToken = getIDToken;
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -2215,8 +2219,6 @@ function run() {
             //get envs
             const telegram_token = process.env.TELEGRAM_TOKEN;
             const telegram_chat = process.env.TELE_CHAT_ID || process.env.TELEGRAM_CHAT;
-            console.log('telegram_token = ', telegram_token);
-            console.log('telegram_chat = ', telegram_chat);
             //check envs
             if (!telegram_token) {
                 throw new Error('telegram_token argument not compiled');

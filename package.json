@@ -1,6 +1,6 @@
 {
   "name": "lz-simple-telegram-notify",
-  "version": "5.0.7",
+  "version": "5.0.8",
   "description": "Notify via Telegram!",
   "private": true,
   "main": "lib/index.js",
@@ -25,9 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "@types/lodash": "^4.14.178",
-    "axios": "^0.26.1",
-    "lodash": "^4.17.21"
+    "axios": "^0.26.1"
   },
   "devDependencies": {
     "@types/node": "^12.7.12",

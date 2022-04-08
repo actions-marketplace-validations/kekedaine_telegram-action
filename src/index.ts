@@ -1,5 +1,4 @@
 import * as core from '@actions/core';
-import util from 'util';
 import axios from 'axios';
 
 async function run() {
@@ -9,8 +8,6 @@ async function run() {
     //get envs
     const telegram_token = process.env.TELEGRAM_TOKEN;
     const telegram_chat = process.env.TELE_CHAT_ID || process.env.TELEGRAM_CHAT;
-    console.log('telegram_token = ', telegram_token)
-    console.log('telegram_chat = ', telegram_chat)
 
     //check envs
     if (!telegram_token) {
