@@ -1,13 +1,13 @@
 {
-  "name": "telegram-action",
-  "version": "2.0.0",
+  "name": "lz-simple-telegram-notify",
+  "version": "1.0.0",
   "description": "Notify via Telegram!",
   "keywords": [
     "action",
     "telegram",
     "notify"
   ],
-  "author": "Luca Patera",
+  "author": "David Nguyen",
   "license": "MIT",
   "main": "lib/main.js",
   "dependencies": {

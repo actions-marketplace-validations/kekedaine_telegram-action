@@ -1,6 +1,6 @@
-name: 'Notify Telegram Action'
-description: 'Notify via Telegram!'
-author: 'Luca Patera'
+name: 'Simple Notify Telegram Action'
+description: 'Simple Notify via Telegram!'
+author: 'David Nguyen'
 inputs:
   commit_template:
     required: false
@@ -11,8 +11,11 @@ inputs:
   status:
     required: false
     description: 'Job status'
+  text:
+    required: false
+    description: 'message'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/main.js'
 branding:
   icon: 'message-square'
