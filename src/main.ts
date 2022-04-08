@@ -5,7 +5,7 @@ import NoCommitsError from "./Exceptions/NoCommitsError";
 
 async function run(): Promise<void> {
     try {
-        const inputMsg = core.getInput("text", { required: false }) || "No message";
+        const inputMsg = core.getInput("message", { required: false }) || "No message";
         const inputParseMode = core.getInput("parse_mode", { required: false }) || "html";
 
         //get envs

@@ -42,7 +42,7 @@ const NoCommitsError_1 = __importDefault(require("./Exceptions/NoCommitsError"))
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const inputMsg = core.getInput("text", { required: false }) || "No message";
+            const inputMsg = core.getInput("message", { required: false }) || "No message";
             const inputParseMode = core.getInput("parse_mode", { required: false }) || "html";
             //get envs
             const telegram_token = process.env.TELEGRAM_TOKEN;
