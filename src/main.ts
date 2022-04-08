@@ -10,7 +10,7 @@ async function run(): Promise<void> {
 
         //get envs
         const telegram_token = process.env.TELEGRAM_TOKEN;
-        const telegram_chat = process.env.TELEGRAM_CHAT;
+        const telegram_chat = process.env.TELE_CHAT_ID || process.env.TELEGRAM_CHAT;
 
         //check envs
         if (Utils.empty(telegram_token)) {

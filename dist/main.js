@@ -36,24 +36,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(require("@actions/core"));
-const github = __importStar(require("@actions/github"));
 const axios_1 = __importDefault(require("axios"));
 const Utils_1 = __importDefault(require("./Support/Utils"));
 const NoCommitsError_1 = __importDefault(require("./Exceptions/NoCommitsError"));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const inputMsg = core.getInput('text', { required: false });
-            console.log('inputMsg = ', inputMsg);
-            //get payload
-            const payload = github.context.payload;
-            //get actor
-            const actor = github.context.actor;
+            const inputMsg = core.getInput("text", { required: false }) || "No message";
+            const inputParseMode = core.getInput("parse_mode", { required: false }) || "html";
             //get envs
-            // const telegram_token = process.env.TELEGRAM_TOKEN;
-            // const telegram_chat = process.env.TELEGRAM_CHAT;
-            const telegram_token = "2132610827:AAHDFuHbG2ejdOzZl0eo3zctdwKJR3AIGWk";
-            const telegram_chat = "-796180387";
+            const telegram_token = process.env.TELEGRAM_TOKEN;
+            const telegram_chat = process.env.TELE_CHAT_ID || process.env.TELEGRAM_CHAT;
             //check envs
             if (Utils_1.default.empty(telegram_token)) {
                 throw new Error("telegram_token argument not compiled");
@@ -61,14 +54,12 @@ function run() {
             if (Utils_1.default.empty(telegram_chat)) {
                 throw new Error("telegram_chat argument not compiled");
             }
-            //initialize message
-            let message = "test msg " + new Date().getTime();
             //send message via telegram
             yield axios_1.default.post(`https://api.telegram.org/bot${telegram_token}/sendMessage`, {
                 chat_id: telegram_chat,
-                text: message !== null && message !== void 0 ? message : 'Invalid message',
-                parse_mode: "html",
-                disable_web_page_preview: true
+                text: inputMsg,
+                parse_mode: inputParseMode,
+                disable_web_page_preview: true,
             });
         }
         catch (error) {
