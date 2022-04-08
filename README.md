@@ -18,10 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send message to Telegram
-        uses: Lukasss93/telegram-action@v2
+        uses: kekedaine/telegram-action@v2
         env:
           TELEGRAM_TOKEN: ${{ secrets.telegram_token }}
           TELEGRAM_CHAT: ${{ secrets.telegram_chat }}
+        with:
+          text: "helloworld"
+          parse_mode: "html"
 
 ```
 
@@ -33,8 +36,8 @@ jobs:
 >How to get a telegram token: [BotFather](https://core.telegram.org/bots#6-botfather)
 >
 >How to get a telegram chat identifier:
-> 
->1. Forward a message from the target chat to [@JsonDumpBot](https://telegram.me/JsonDumpBot) 
+>
+>1. Forward a message from the target chat to [@JsonDumpBot](https://telegram.me/JsonDumpBot)
 >2. Copy the *message* ➡ *forward_from_chat* ➡ **id**
 
 

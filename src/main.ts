@@ -1,30 +1,16 @@
 import * as core from "@actions/core";
-import * as github from "@actions/github";
 import axios from "axios";
-import * as showdown from "showdown";
-import * as mustache from "mustache";
-import * as fs from 'fs';
-import * as path from 'path';
 import Utils from "./Support/Utils";
 import NoCommitsError from "./Exceptions/NoCommitsError";
-import StatusMessage from "./Enums/StatusMessage";
 
 async function run(): Promise<void> {
     try {
-
-        const inputMsg = core.getInput('text', { required: false });
-        console.log('inputMsg = ', inputMsg)
-
-        //get payload
-        const payload = github.context.payload;
-
-        //get actor
-        const actor = github.context.actor;
+        const inputMsg = core.getInput("text", { required: false }) || "No message";
+        const inputParseMode = core.getInput("parse_mode", { required: false }) || "html";
 
         //get envs
-        // const telegram_token = process.env.TELEGRAM_TOKEN;
-        // const telegram_chat = process.env.TELEGRAM_CHAT;
-
+        const telegram_token = process.env.TELEGRAM_TOKEN;
+        const telegram_chat = process.env.TELEGRAM_CHAT;
 
         //check envs
         if (Utils.empty(telegram_token)) {
@@ -35,17 +21,13 @@ async function run(): Promise<void> {
             throw new Error("telegram_chat argument not compiled");
         }
 
-        //initialize message
-        // let message: string | null = "No Message "+ new Date().getTime();
-
         //send message via telegram
         await axios.post(`https://api.telegram.org/bot${telegram_token}/sendMessage`, {
             chat_id: telegram_chat,
-            text: inputMsg ?? 'Invalid message',
-            parse_mode: "html",
-            disable_web_page_preview: true
+            text: inputMsg,
+            parse_mode: inputParseMode,
+            disable_web_page_preview: true,
         });
-
     } catch (error: any) {
         if (error instanceof NoCommitsError) {
             core.warning("No commits found.");
