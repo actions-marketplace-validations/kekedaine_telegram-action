@@ -7,55 +7,8 @@
 #   success:
 #     runs-on: ubuntu-latest
 #     steps:
-#       - uses: actions/checkout@v2
-#       - name: Run success
-#         run: exit 0
 #       - name: Send message to Telegram
 #         uses: ./
 #         if: always()
-#         env:
-#           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-#           TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
 #         with:
-#           status: ${{job.status}}
-#   fail:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Run fail
-#         run: exit 1
-#       - name: Send message to Telegram
-#         uses: ./
-#         if: always()
-#         env:
-#           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-#           TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
-#         with:
-#           status: ${{job.status}}
-#   no-status:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Run success
-#         run: exit 0
-#       - name: Send message to Telegram
-#         uses: ./
-#         if: always()
-#         env:
-#           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-#           TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
-#   alternative-template:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Run success
-#         run: exit 0
-#       - name: Send message to Telegram
-#         uses: ./
-#         if: always()
-#         env:
-#           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-#           TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
-#         with:
-#           commit_template: ./templates/commit-alternative.mustache
-#           status: ${{job.status}}
+#           text: "hello 1\nline2\tTab1 \n🐳🐳🐳🐳"

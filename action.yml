@@ -2,25 +2,13 @@ name: 'Simple Notify Telegram Action'
 description: 'Simple Notify via Telegram!'
 author: 'David Nguyen'
 inputs:
-  commit_template:
-    required: false
-    description: 'Commit message template'
-  release_template:
-    required: false
-    description: 'Release message template'
-  status:
-    required: false
-    description: 'Job status'
   message:
-    required: false
     description: 'message'
   parse_mode:
-    required: false
     description: 'parse_mode'
-
 runs:
   using: 'node12'
-  main: 'dist/main.js'
+  main: 'dist/index.js'
 branding:
   icon: 'message-square'
   color: 'blue'
